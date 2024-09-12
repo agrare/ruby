@@ -69,6 +69,8 @@ void rb_st_foreach_safe(struct st_table *st, st_foreach_callback_func *func, st_
  */
 VALUE rb_check_hash_type(VALUE obj);
 
+typedef int rb_foreach_func(VALUE, VALUE, VALUE);
+
 RBIMPL_ATTR_NONNULL(())
 /**
  * Iterates   over  a   hash.   This   basically   does  the   same  thing   as
@@ -80,7 +82,7 @@ RBIMPL_ATTR_NONNULL(())
  * @param[in]  arg               Passed as-is to `func`.
  * @exception  rb_eRuntimeError  `hash` was tampered during iterating.
  */
-void rb_hash_foreach(VALUE hash, int (*func)(VALUE key, VALUE val, VALUE arg), VALUE arg);
+void rb_hash_foreach(VALUE hash, rb_foreach_func *func, VALUE arg);
 
 /**
  * Calculates a message  authentication code of the passed  object.  The return

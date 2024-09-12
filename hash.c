@@ -1269,8 +1269,6 @@ st_foreach_safe(st_table *table, st_foreach_func *func, st_data_t a)
     }
 }
 
-typedef int rb_foreach_func(VALUE, VALUE, VALUE);
-
 struct hash_foreach_arg {
     VALUE hash;
     rb_foreach_func *func;
